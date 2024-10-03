@@ -10,8 +10,9 @@ This project aims to introduce you to kubernetes from a developer perspective. Y
 * destroy the machine: *vagrant destroy*
 
 
-k8s vs k3s
+## k8s vs k3s
 https://www.civo.com/blog/k8s-vs-k3s
 
-vagrant tutorials
+## vagrant tutorials
+https://developer.hashicorp.com/vagrant/docs/cli/ssh
 https://developer.hashicorp.com/vagrant/tutorials
