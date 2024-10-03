@@ -8,6 +8,7 @@ This project aims to introduce you to kubernetes from a developer perspective. Y
 * connect to the machine : *vagrant shh (default)*
 * disconnect from the machine: *logout*
 * destroy the machine: *vagrant destroy*
+* install a box: *vagrant box add hashicorp/bionic64*
 
 
 ## k8s vs k3s
