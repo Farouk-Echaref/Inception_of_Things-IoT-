@@ -15,6 +15,11 @@ This project aims to introduce you to kubernetes from a developer perspective. Y
 * Suspending the virtual machine will stop it and save its current running state: *vagrant suspend*
 * gracefully shut down the guest operating system and power down the guest machine: *vagrant halt*
 
+## Vagrant course:
+* creating a fully functional, ssh enabled ubuntu machine:
+*vagrant init bento/ubuntu-16.04*
+*vagrant up vagrant up --provider virtualbox*
+
 ## k8s vs k3s
 https://www.civo.com/blog/k8s-vs-k3s
 https://spacelift.io/blog/kubernetes
