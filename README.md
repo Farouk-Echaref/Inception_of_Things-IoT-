@@ -56,6 +56,8 @@ config.vm.provision "chef_solo" do |chef|
 end
 ```
 
+* https://developer.hashicorp.com/vagrant/tutorials/networking-provisioning-operations/getting-started-provisioning
+
 ## Vagrant course:
 * creating a fully functional, ssh enabled ubuntu machine:
 *vagrant init bento/ubuntu-16.04*
