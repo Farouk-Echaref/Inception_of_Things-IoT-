@@ -14,6 +14,7 @@ This project aims to introduce you to kubernetes from a developer perspective. Y
 * *Vagrant Share* (HTTP Sharing, SSH Sharing, General Sharing) (needs Ngrok)
 * Suspending the virtual machine will stop it and save its current running state: *vagrant suspend*
 * gracefully shut down the guest operating system and power down the guest machine: *vagrant halt*
+* reload the environement: *vagrant reload*
 
 ## Vagrant provisioning:
 Provisioning is the process of setting up the software and configuration on a VM or server automatically. In the context of Vagrant, provisioning can include:
@@ -57,6 +58,18 @@ end
 ```
 
 * https://developer.hashicorp.com/vagrant/tutorials/networking-provisioning-operations/getting-started-provisioning
+
+## Vagrant networking:
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.box = "hashicorp/bionic64"
+  config.vm.provision :shell, path: "bootstrap.sh"
+  config.vm.network :forwarded_port, guest: 80, host: 4567
+end
+```
+
+https://developer.hashicorp.com/vagrant/tutorials/networking-provisioning-operations/getting-started-networking
 
 ## Vagrant course:
 * creating a fully functional, ssh enabled ubuntu machine:
