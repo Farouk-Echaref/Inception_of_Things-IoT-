@@ -76,10 +76,11 @@ https://developer.hashicorp.com/vagrant/tutorials/networking-provisioning-operat
 *vagrant init bento/ubuntu-16.04*
 *vagrant up --provider virtualbox*
 
-## k8s vs k3s
-https://www.civo.com/blog/k8s-vs-k3s
-https://spacelift.io/blog/kubernetes
-
 ## vagrant tutorials
 https://developer.hashicorp.com/vagrant/docs/cli/ssh
 https://developer.hashicorp.com/vagrant/tutorials
+multimachine: https://developer.hashicorp.com/vagrant/docs/multi-machine
+
+## k8s vs k3s
+https://www.civo.com/blog/k8s-vs-k3s
+https://spacelift.io/blog/kubernetes
