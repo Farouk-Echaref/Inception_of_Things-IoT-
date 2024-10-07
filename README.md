@@ -69,6 +69,30 @@ Vagrant.configure("2") do |config|
 end
 ```
 
+```markdown
+### Explanation of `fechS` Replacing `config` in Vagrant Configuration
+
+In your Vagrant configuration, this line:
+
+```ruby
+config.vm.define "fech-chaS" do |fechS|
+```
+
+defines a virtual machine (VM) named `"fech-chaS"`. The block that follows allows you to specify configuration options for this particular VM. Inside the block, `fechS` is a variable that refers to the configuration object for the `"fech-chaS"` VM.
+
+### Why `config` Gets "Replaced" by `fechS`:
+
+1. **`config` is the main object** that holds all the configuration for the entire Vagrant environment.
+2. When you define a specific VM using `config.vm.define`, you're **creating a scoped configuration** for that particular VM.
+3. Inside the block, `fechS` is just a **local alias** for the scoped configuration of that specific VM (`"fech-chaS"` in this case).
+4. This allows you to configure options for `"fech-chaS"` using `fechS`, while still leaving `config` available for other global or VM-specific configurations.
+
+### Key Takeaway
+
+`fechS.vm.box = "ubuntu/jammy64"` is setting the box for the `"fech-chaS"` VM, **not replacing `config`**. Instead, `fechS` is simply a shorter reference to the configuration object for that particular VM within the block.
+```
+
+
 https://developer.hashicorp.com/vagrant/tutorials/networking-provisioning-operations/getting-started-networking
 
 ## Vagrant course:
