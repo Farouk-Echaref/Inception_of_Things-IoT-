@@ -19,6 +19,9 @@ This project aims to introduce you to kubernetes from a developer perspective. Y
 * reload the environement: *vagrant reload*
 
 ## Vagrant provisioning:
+
+![alt text](0_MIoKBVhgeZ8lVQ5A.webp)
+
 Provisioning is the process of setting up the software and configuration on a VM or server automatically. In the context of Vagrant, provisioning can include:
 
 * Installing necessary software (e.g., web servers like Apache or Nginx, databases like MySQL or PostgreSQL, programming languages, etc.).
@@ -117,6 +120,7 @@ Here's a breakdown of what the `eth1` interface typically represents in Vagrant:
 In summary, `eth1` generally refers to the secondary network interface in a Vagrant VM, which is often used for custom network configurations like private or bridged networks.
 
 https://developer.hashicorp.com/vagrant/tutorials/networking-provisioning-operations/getting-started-networking
+https://8grams.medium.com/vagrant-create-modern-development-environments-1978a067fdb3
 
 ## Vagrant course:
 * creating a fully functional, ssh enabled ubuntu machine:
