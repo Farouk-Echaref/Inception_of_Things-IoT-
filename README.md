@@ -62,6 +62,8 @@ config.vm.provision "chef_solo" do |chef|
 end
 ```
 
+https://developer.hashicorp.com/vagrant/docs/provisioning/basic_usage
+
 * https://developer.hashicorp.com/vagrant/tutorials/networking-provisioning-operations/getting-started-provisioning
 
 ## Vagrant networking:
