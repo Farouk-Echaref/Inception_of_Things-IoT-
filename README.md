@@ -90,8 +90,29 @@ defines a virtual machine (VM) named `"fech-chaS"`. The block that follows allow
 ### Key Takeaway
 
 `fechS.vm.box = "ubuntu/jammy64"` is setting the box for the `"fech-chaS"` VM, **not replacing `config`**. Instead, `fechS` is simply a shorter reference to the configuration object for that particular VM within the block.
-```
 
+In Vagrant, the network interfaces of the virtual machines (VMs) are named similarly to how they are named in Linux systems, such as `eth0`, `eth1`, etc. These represent the different network adapters connected to the VM.
+
+Here's a breakdown of what the `eth1` interface typically represents in Vagrant:
+
+- **`eth0` (first network interface)**: This is usually configured as the NAT (Network Address Translation) interface by default. It allows the VM to connect to the host system's network (or the internet) but does not provide direct access from the host to the VM. This is often the primary interface.
+
+- **`eth1` (second network interface)**: This is typically used when you configure additional networking options, such as **host-only** or **bridged networking**. In most Vagrant setups, when you specify a private or public network, Vagrant adds another network interface (like `eth1`) to handle this.
+
+### Common configurations for `eth1`:
+- **Private network (host-only)**: This is used to set up a private network between your host machine and the VM. You can access the VM directly from your host via a specified IP address.
+  
+  ```ruby
+  config.vm.network "private_network", ip: "192.168.50.4"
+  ```
+
+- **Bridged network**: This connects the VM directly to your physical network, allowing it to have its own IP address and act as a standalone device on the network.
+  
+  ```ruby
+  config.vm.network "public_network"
+  ```
+
+In summary, `eth1` generally refers to the secondary network interface in a Vagrant VM, which is often used for custom network configurations like private or bridged networks.
 
 https://developer.hashicorp.com/vagrant/tutorials/networking-provisioning-operations/getting-started-networking
 
