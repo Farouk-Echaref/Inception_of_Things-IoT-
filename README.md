@@ -137,3 +137,4 @@ multimachine: https://developer.hashicorp.com/vagrant/docs/multi-machine
 ## k8s vs k3s
 https://www.civo.com/blog/k8s-vs-k3s
 https://spacelift.io/blog/kubernetes
+https://www.youtube.com/watch?v=Dwufy7QtZR0
