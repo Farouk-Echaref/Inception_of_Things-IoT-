@@ -3,7 +3,7 @@
 # Inception_of_Things-IoT-
 This project aims to introduce you to kubernetes from a developer perspective. You will have to set up small clusters and discover the mechanics of continuous integration. At the end of this project you will be able to have a working cluster in docker and have a usable continuous integration for your applications. 
 
-## Vagrant Docs:
+# Vagrant Docs:
 
 * install a box: *vagrant box add hashicorp/bionic64*
 * initialize vagrant : *vagrant init hashicorp/bionic64*
@@ -133,6 +133,23 @@ https://8grams.medium.com/vagrant-create-modern-development-environments-1978a06
 https://developer.hashicorp.com/vagrant/docs/cli/ssh
 https://developer.hashicorp.com/vagrant/tutorials
 multimachine: https://developer.hashicorp.com/vagrant/docs/multi-machine
+
+# K8S Docs:
+
+![alt text](components-of-kubernetes.svg)
+
+## what can k8s provide:
+
+* service discovery and load balancing.
+* storage orchestration.
+* automated rollouts and rollbacks.
+* automatic bin packing.
+* self-healing.
+* secret and configuration management.
+* bach execution.
+* horizontal scaling.
+* IPv4/IPv6 dual-stack.
+* designed for extensibility.
 
 ## k8s vs k3s
 https://www.civo.com/blog/k8s-vs-k3s
