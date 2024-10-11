@@ -15,4 +15,20 @@ all:
         ansible_user: ubuntu
         ansible_ssh_private_key_file: ~/.ssh/id_rsa
 
+or 
+
+
+ungrouped:
+  hosts:
+    mail.example.com:
+webservers:
+  hosts:
+    foo.example.com:
+    bar.example.com:
+dbservers:
+  hosts:
+    one.example.com:
+    two.example.com:
+    three.example.com:
+
 

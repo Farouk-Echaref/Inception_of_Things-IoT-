@@ -19,3 +19,6 @@
 
 # Ansible Playbook:
 
+* An Ansible playbook is a configuration management script written in YAML format, used to define a series of tasks that Ansible should execute on one or more managed hosts. Playbooks are the core of Ansible’s automation framework, allowing you to describe how systems should be configured, services deployed, and workflows orchestrated.
+
+* Playbook = plays + modules + plugins, and it runs against inventory.
