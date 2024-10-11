@@ -232,3 +232,155 @@ Remember to clean up your local cluster
 
 kubectl delete deployments/kubernetes-bootcamp services/kubernetes-bootcamp
 
+
+
+# Kubernetes YAML File Structure and Example
+
+A Kubernetes YAML file is structured using a specific format that defines various resources like pods, services, deployments, ReplicaSets, etc. Below is a general format for a Kubernetes YAML file, along with an example of a Deployment that creates pods for an application.
+
+## General Structure of a Kubernetes YAML File:
+```yaml
+apiVersion: <api-version>    # The version of the Kubernetes API to use
+kind: <resource-kind>        # The type of Kubernetes resource (e.g., Pod, Service, Deployment, etc.)
+metadata:
+  name: <resource-name>      # Name of the resource
+  labels:                    # (Optional) Labels to categorize the resource
+    <key>: <value>
+spec:                        # Specification of the desired state of the resource
+  <resource-specific-fields>  # Fields depend on the resource type (e.g., containers for pods, replicas for deployments)
+```
+
+## Example YAML for a Kubernetes Deployment
+```yaml
+apiVersion: apps/v1           # Specifies the API version for apps, used for deployments
+kind: Deployment              # The type of resource (Deployment)
+metadata:
+  name: my-deployment         # Name of the deployment
+  labels:                     # Labels for categorizing or selecting the resource
+    app: my-app
+spec:
+  replicas: 3                 # Number of pod replicas to run
+  selector:
+    matchLabels:
+      app: my-app             # Selector to match pods managed by this deployment
+  template:                   # Pod template (defines how the pods will be created)
+    metadata:
+      labels:
+        app: my-app           # Labels for the pods
+    spec:
+      containers:
+      - name: my-container    # Name of the container
+        image: nginx:1.19     # Container image (e.g., NGINX in this case)
+        ports:
+        - containerPort: 80   # Port that the container listens on
+```
+
+### Breakdown of the Example:
+- `apiVersion`: Specifies the version of the Kubernetes API. For example, `apps/v1` is used for deployments.
+- `kind`: Defines the type of resource. In this case, it's a Deployment.
+- `metadata`: Contains information such as the name and optional labels for the resource.
+- `spec`: The desired state specification for the resource.
+- `replicas`: Specifies how many pod replicas to run.
+- `selector`: Matches the pods that this deployment will manage.
+- `template`: Specifies the pod template, which defines how the pods should be created (including metadata and container definitions).
+- `containers`: Defines the container, its name, image, and ports.
+
+## Common Resource Types in Kubernetes YAML Files:
+
+### Pod:
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: nginx:1.19
+```
+
+### Service:
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  selector:
+    app: my-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP
+```
+
+### ConfigMap:
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config
+data:
+  key1: value1
+  key2: value2
+```
+
+### Ingress:
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+spec:
+  rules:
+  - host: my-app.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: my-service
+            port:
+              number: 80
+```
+
+## Important Sections:
+- `apiVersion`: Specifies which version of the Kubernetes API the resource follows.
+- `kind`: Defines what kind of resource you are creating (e.g., Pod, Service, Deployment, etc.).
+- `metadata`: Describes metadata about the resource, such as its name and labels.
+- `spec`: Contains the detailed configuration and state specification for the resource, like the number of replicas in a deployment or the container image in a pod.
+
+## General Notes:
+- YAML files are indented with spaces (not tabs).
+- Each section (like metadata, spec) and nested fields should be correctly indented to follow YAML formatting rules.
+- Kubernetes YAML files can define multiple resources by separating them with `---`.
+
+### Example of multiple resources in one file:
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.19
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  selector:
+    app: my-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP
+```
+
+This YAML defines both a Pod and a Service in one file.
+
