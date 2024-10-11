@@ -135,3 +135,31 @@ minikube service hello-node
 This opens up a browser window that serves your app and shows the app's response
 
 * kubectl apply -f <resource.yaml> (activate cluster by applying resources (deployment, servecis...))
+
+## k8s services:
+
+* A Kubernetes Service is an abstraction layer which defines a logical set of Pods and enables external traffic exposure, load balancing and service discovery for those Pods.
+* A Service routes traffic across a set of Pods. Services are the abstraction that allows pods to die and replicate in Kubernetes without impacting your application. Discovery and routing among dependent Pods (such as the frontend and backend components in an application) are handled by Kubernetes Services.
+
+* kubectl describe services/kubernetes-bootcamp
+
+* services and labels and selectors
+
+Create an environment variable called NODE_PORT that has the value of the Node port assigned:
+
+export NODE_PORT="$(kubectl get services/kubernetes-bootcamp -o go-template='{{(index .spec.ports 0).nodePort}}')"
+echo "NODE_PORT=$NODE_PORT"
+
+Now we can test that the app is exposed outside of the cluster using curl, the IP address of the Node and the externally exposed port:
+
+curl http://"$(minikube ip):$NODE_PORT"
+
+### using labels:
+
+* check infos about labels and selectors:
+    - kubectl describe deployment/kubernetes-bootcamp
+
+https://kubernetes.io/docs/tutorials/kubernetes-basics/expose/expose-intro/
+
+## Scaling:
+
