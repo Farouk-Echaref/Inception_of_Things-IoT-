@@ -163,3 +163,15 @@ https://kubernetes.io/docs/tutorials/kubernetes-basics/expose/expose-intro/
 
 ## Scaling:
 
+* Scaling is accomplished by changing the number of replicas in a Deployment.
+* You can create from the start a Deployment with multiple instances using the --replicas parameter for the kubectl create deployment command.
+* Running multiple instances of an application will require a way to distribute the traffic to all of them. Services have an integrated load-balancer that will distribute network traffic to all Pods of an exposed Deployment. Services will monitor continuously the running Pods using endpoints, to ensure the traffic is sent only to available Pods.
+* see the ReplicaSet created by the deployment:
+    - kubectl get rs
+* scale the Deployment to 4 replicas(scale up):
+    - kubectl scale deployments/kubernetes-bootcamp --replicas=4
+* check all the infos about the new pods:
+    - kubectl get pods -o wide
+
+* scale down : 
+    - kubectl scale deployments/kuberenetes-bootcamp --replicas=2
