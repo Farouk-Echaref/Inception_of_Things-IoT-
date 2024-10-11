@@ -1,5 +1,11 @@
 # k8s and docker commands
 
+* A Pod is a group of one or more application containers (such as Docker) and includes shared storage (volumes), IP address and information about how to run them.
+* A Deployment is responsible for creating and updating instances of your application.
+* Applications need to be packaged into one of the supported container formats in order to be deployed on Kubernetes.
+* Containers should only be scheduled together in a single Pod if they are tightly coupled and need to share resources such as disk.
+* A node is a worker machine in Kubernetes and may be a VM or physical machine, depending on the cluster. Multiple Pods can run on one Node.
+
 The common format of a kubectl command is: `kubectl action resource`
 
 * minikube start --driver=docker --nodes 3 --memory 4g --cpus 2
@@ -13,6 +19,7 @@ The common format of a kubectl command is: `kubectl action resource`
 * docker ps (docker container ls)
 * kubectl get nodes (returns active nodes)
 * kubectl get po -A (retrieve a list of all Pods running across all namespaces in a cluster)
+* kubectl exec -ti hello-node-66d457cb86-7fn26  -- bash 
 * create a deployment to manage a pod (the pod runs a container based on the provided docker image):
     - A deployment in Kubernetes manages a set of replicas (pods) and ensures that a specific number of instances of your application are running:
 
@@ -61,6 +68,10 @@ By default, kubectl works in a specific namespace (usually default unless otherw
 * kubectl get events -A
 * kubectl get events -w (watch for events)
 * kubectl get pods -n default (get pods in specific namespace)
+* kubectl get services
+* minikube service hello-node
+* kubectl get nodes
+* kubectl describe resource_name
 * kubectl config view (kubectl config)
 * kubectl logs pod_name
 
