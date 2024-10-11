@@ -1,5 +1,10 @@
 # k8s and docker commands
 
+The common format of a kubectl command is: `kubectl action resource`
+
+* minikube start --driver=docker --nodes 3 --memory 4g --cpus 2
+    This command starts a Minikube cluster with 3 nodes using Docker as the driver, allocating 4GB of memory and 2 CPUs to each node.
+
 * minkube start (start cluster)
 * minikube start --driver=docker
 * minikube stop
@@ -49,4 +54,73 @@ This command retrieves all the pods in the current namespace where the command i
 By default, kubectl works in a specific namespace (usually default unless otherwise configured).
 * see cluster events:
     - kubectl get events
+* kubectl get all (infos about pods, deploys... in default namespace) 
+* kubectl get all  -A (infos about pods, deploys... in default namespace) 
+* kubectl get ns (get namespaces)
+* kubectl get events (get events in default namespace)
+* kubectl get events -A
+* kubectl get events -w (watch for events)
+* kubectl get pods -n default (get pods in specific namespace)
+* kubectl config view (kubectl config)
+* kubectl logs pod_name
+
+
+```bash
+kubectl expose deployment hello-node --type=LoadBalancer --port=8080
+```
+
+# Exposing a Kubernetes Deployment as a Service
+
+The command is used to expose a Kubernetes deployment as a service, making the application accessible externally, typically via an external load balancer. Here’s a breakdown of what each part of the command does:
+
+## Breakdown:
+
+### **`kubectl expose`:**
+- The `expose` command is used to create a Kubernetes **Service** that exposes a resource (such as a pod, deployment, or replica set) to make it accessible over the network.
+- In this case, the resource being exposed is a **Deployment**.
+
+### **`deployment hello-node`:**
+- This specifies the **deployment** that you want to expose. The `hello-node` deployment refers to the set of pods created by the deployment you previously created.
+- The service will route traffic to the pods managed by this deployment.
+
+### **`--type=LoadBalancer`:**
+- The `--type` flag specifies the type of service to create.
+- `LoadBalancer` is a type of service that provisions an external load balancer to route traffic to the Kubernetes pods. This is typically used for exposing applications to the internet or external networks.
+- When you create a `LoadBalancer` service in Kubernetes, the cloud provider (like AWS, GCP, Azure, etc.) will automatically create an external load balancer and assign an external IP address to the service.
+
+### **`--port=8080`:**
+- The `--port` flag specifies the port on which the service will be exposed.
+- In this case, the service will be accessible on **port 8080** externally.
+- Internally, the service will forward traffic on port 8080 to the containers running inside the pods. This is useful for web servers or applications that listen on specific ports.
+
+## What Happens After Running the Command?
+- A Kubernetes **Service** is created of type `LoadBalancer` that:
+  - Exposes your deployment (`hello-node`) externally on port 8080.
+  - Creates an external load balancer (provided by the cloud platform) to distribute incoming traffic across your pods.
+  - The service will map the external port 8080 to the port on which your application (inside the pods) is running.
+
+## Typical Use Case:
+- You typically use this command when you want to expose an application running in your Kubernetes cluster to the outside world and allow external users or systems to access it.
+- **`LoadBalancer`** type services are particularly useful in cloud environments where Kubernetes can automatically provision an external load balancer, making it easy to expose your application to external clients.
+
+## Example Flow:
+1. A user sends a request to the **external IP** provided by the cloud provider (via the Load Balancer).
+2. The Load Balancer forwards this request to one of the pods running your `hello-node` application.
+3. The request is processed by the pod, and the response is sent back to the user.
+
+## Summary:
+- **`kubectl expose`** creates a Kubernetes **Service** to expose a Deployment.
+- **`--type=LoadBalancer`** makes the service accessible externally via a cloud-provided load balancer.
+- **`--port=8080`** specifies that the service will be available on port 8080.
+  
+This is commonly used for making web applications or APIs available to external clients.
+* view services:
+    - kubectl get services
+     On minikube, the LoadBalancer type makes the Service accessible through the minikube service command.
+
+Run the following command:
+
+minikube service hello-node
+This opens up a browser window that serves your app and shows the app's response
+
 * kubectl apply -f <resource.yaml> (activate cluster by applying resources (deployment, servecis...))
