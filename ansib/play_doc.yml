@@ -1,0 +1,59 @@
+---
+# This playbook performs updates on web servers and database servers.
+# It ensures that Apache and PostgreSQL are at the latest version and configured correctly.
+
+- name: Update web servers
+  # The name of the play. This describes the purpose of the play.
+  hosts: webservers
+  # The hosts on which this play will run. In this case, it's targeting the 'webservers' group.
+  remote_user: root
+  # The user that will be used to run the tasks on the remote servers. In this case, it's the 'root' user.
+
+  tasks:
+  # A list of tasks to be executed on the hosts specified above.
+  - name: Ensure apache is at the latest version
+    # A descriptive name for this task, ensuring Apache (httpd) is installed and at its latest version.
+    ansible.builtin.yum:
+    # Using the 'yum' module, which is the package manager for Red Hat-based distributions like CentOS.
+      name: httpd
+      # The name of the package to be installed. In this case, 'httpd', which is the Apache web server.
+      state: latest
+      # The desired state of the package. 'latest' ensures that the most recent version is installed.
+
+  - name: Write the apache config file
+    # A descriptive name for this task, which writes the Apache configuration file using a template.
+    ansible.builtin.template:
+    # The 'template' module is used to copy a template file from the control machine to the remote server.
+      src: /srv/httpd.j2
+      # The source template file on the control machine. This is a Jinja2 template for the Apache configuration.
+      dest: /etc/httpd.conf
+      # The destination path on the remote server where the configuration file should be written.
+
+- name: Update db servers
+  # This play performs updates on database servers.
+  hosts: databases
+  # The hosts on which this play will run. In this case, it's targeting the 'databases' group.
+  remote_user: root
+  # The user that will be used to run the tasks on the remote servers. In this case, it's the 'root' user.
+
+  tasks:
+  # A list of tasks to be executed on the hosts specified above.
+  - name: Ensure postgresql is at the latest version
+    # A descriptive name for this task, ensuring PostgreSQL is installed and at its latest version.
+    ansible.builtin.yum:
+    # Using the 'yum' module to manage packages on Red Hat-based distributions.
+      name: postgresql
+      # The name of the package to be installed. In this case, 'postgresql', which is the PostgreSQL database server.
+      state: latest
+      # The desired state of the package. 'latest' ensures that the most recent version is installed.
+
+  - name: Ensure that postgresql is started
+    # A descriptive name for this task, ensuring that the PostgreSQL service is running.
+    ansible.builtin.service:
+    # The 'service' module is used to manage services on the remote servers.
+      name: postgresql
+      # The name of the service to be managed. In this case, it's the 'postgresql' service.
+      state: started
+      # The desired state of the service. 'started' ensures that the service is running.
+
+
