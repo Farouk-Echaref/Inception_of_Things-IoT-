@@ -45,3 +45,24 @@
     ```
 
 # GIT:
+
+- git pull = git fetch + git merge
+
+- revert a commit :
+    * git log / git reflog
+    * git revert <commmit_hash>
+    * make changes
+    * git commit 
+    * git push origin <branch-name>
+
+- git reset (--soft, --reset, --hard)
+- git stash/ git pop
+- git log/ git reflog
+
+- make an existing GIT branch track a remote branch:
+
+```bash
+git branch --set-upstream-to=<remote-name>/<branch-name>
+git branch -u <remote-name>/<branch-name>
+```
+
