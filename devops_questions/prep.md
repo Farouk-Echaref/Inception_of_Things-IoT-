@@ -136,4 +136,10 @@ git branch -u <remote-name>/<branch-name>
 - docker compose questions:
     * https://github.com/Farouk-Echaref/42_Inception/blob/master/srcs/docker-compose.yml
     * https://github.com/mrbardia72/docker-Interview-Questions-and-Answers/blob/main/docker-compose.md
-    * 
+    * https://www.geeksforgeeks.org/docker-interview-questions/
+
+# Kubernetes:
+
+* Pod : collection of one or more Linux Containers, smallest unit in k8s.
+* get pods in a namespace:
+    - kubectl get pods -n <namespace_name>
