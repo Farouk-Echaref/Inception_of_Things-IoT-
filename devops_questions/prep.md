@@ -227,3 +227,23 @@ git branch -u <remote-name>/<branch-name>
     [dbs]
     database ansible_host=10.10.10.1
     ```
+
+    * set up a basic ansible palybook to install a package on a group of servers:
+
+    ```yaml
+    - name: install package playbook
+      hosts: server_group
+      become: true #running tasks with elevated privileges (sudo)
+      tasks:
+      - install desired package
+        apt:
+            name: package_name
+            state: latest
+
+    ```
+
+    * run an ansible playbook with a specific inventory file:
+        - ansible-playbook -i path_to_inventory playbook.yml
+    
+    * using ansible to check the status of a service on multiple servers:
+    
