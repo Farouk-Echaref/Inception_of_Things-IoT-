@@ -1,3 +1,6 @@
+![alt text](kubernetes-cluster-architecture.svg)
+
+
 # k8s and docker commands
 
 * A Pod is a group of one or more application containers (such as Docker) and includes shared storage (volumes), IP address and information about how to run them.
